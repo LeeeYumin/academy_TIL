@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20240704</title>
+</head>
+<body>
+    <script src="./0704.js"></script>
+
+    <!--복습? 코드같음.. 복붙함-->
+    <h1>나의 todo list</h1>
+    <p>1. 오늘 저녁에는 부대찌게를 끓여 먹겠다.<button type="button">삭제</button></p>
+    <p>2. 후식으로 슈팅스타를 먹겠다.<button type="button">삭제</button></p>
+    <p>3. 자기 전에 반드시 내일 아침 메뉴를 생각해두겠다.<button type="button">삭제</button></p>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll('p').forEach(function (p) {
+                p.addEventListener('click', function () {
+                    alert(this.textContent); // p 태그의 텍스트 컨텐츠를 출력
+                });
+            });
+            document.querySelectorAll('p button').forEach(function (button) {
+                button.addEventListener('click', function (event) {
+                    event.stopPropagation(); // 이벤트 버블링 방지
+                    if (confirm('이 항목을 삭제하시겠습니까?')) {
+                        this.parentElement.remove(); // 부모 p 태그 삭제
+                    }
+                });
+            });
+        });
+
+        document.addEventListener("contextmenu", function (event) {
+            event.preventDefault();
+            alert('해당 페이지에서는 오른쪽 클릭을 제한합니다.'); 
+        });
+
+        const btn = document.querySelector("button");
+        const container = document.querySelector("div");
+        btn.addEventListener("click", function() {
+            person.forEach((item, index) => {
+                const p = document.createElement("p");
+                for (const prop in person[index]) {
+                    p.setAttribute(`data-${prop}`, person[index][prop]);
+                }
+                Object.keys(person[0]).forEach((prop) => {
+                    const span = document.createElement("span");
+                    span.textContent = p.dataset[prop];
+                    p.appendChild(span);
+                });
+                container.appendChild(p)
+                
+            });
+        })
+        
+    </script>
+    <!--여기까지 복붙-->
+
+</body>
+</html>
