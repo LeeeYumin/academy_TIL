@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document_CSS</title>
-    <style>
-        @charset 'UTF-8';
+@charset 'UTF-8';
 /*
 GENERAL STYLING
 ================================================ */
@@ -488,5 +482,3 @@ margin: 0 .75rem;
 color: #fff;
 }
 }
-</style>
-</head>
