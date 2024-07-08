@@ -1,0 +1,27 @@
+<!-- 20240708 SPA index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SPA Example</title>
+</head>
+<body>
+    <h1 id="title">Welcome to the Home Page</h1>
+    <nav>
+        <button onclick="loadPage('home')">Home</button>
+        <button onclick="loadPage('about')">About</button>
+        <button onclick="loadPage('contact')">Contact</button>
+    </nav>
+    <script>
+        function loadPage(page) {
+            const title = document.getElementById('title');
+            if (page === 'home') {
+                title.textContent = 'Welcome to the Home Page';
+            } else if (page === 'about') {
+                title.textContent = 'About Us';
+            } else if (page === 'contact') {
+                title.textContent = 'Contact Us';
+            }
+        }
+    </script>
+</body>
+</html>
