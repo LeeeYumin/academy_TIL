@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0709예외처리</title>
+</head>
+<body>
+    <style>
+        div {
+            background-color : red;
+        }
+    </style>
+    
+    <div>
+        <button>무슨 버튼???</button>
+        <p>안녕하세요.예외처리 테스트</p>
+    </div>
+    <script>
+        try {
+            console.log('Start!');
+            const numberArr = Array(2,4,'가',5,6,);
+            numberArr.forEach((v) => {
+                const num = parseInt(v);
+                console.log(num);
+                if (isNaN(num)) {
+                    // throw new TypeError("숫자가 아닙니다.");
+                    return alert('숫자가 아닙니다.');
+                }
+            })
+        } catch(error) {
+            console.log(error);
+        } finally {
+            console.log('End');
+        }
+
+        // 앞에 타이핑 한 내용 일부..
+        //const $button = document.querySelector("button");
+        //$button.addEventListener('click', () => console.log('Not Exitst'));
+
+        //throw new Error("Generated Error!");
+        // 또는 throw new ReferenceError("Generated Error!");
+    </script>
+
+
+</body>
+</html>

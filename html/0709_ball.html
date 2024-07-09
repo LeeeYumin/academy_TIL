@@ -1,0 +1,148 @@
+<!-- 1.사용자가 숫자 6개를 입력 숫자 6개 입력 + 검사. 
+2.추첨기가 돌아가며 7개의 공을 뽑음.
+    7번째 공은 보너스 숫자에 해당하는 공 숫자 1~45까지 있는 배열이 있고 숫자를 섞거나 / 임의 숫자를 뽑는 방법
+    [1, 2, ……45]; index값이 0,1,…..44 shuffle [42, 23, 3, 9…1]
+3. 긴장감을 위해 뽑은 공을 1초에 하나씩 보여 줌 브라우저에 element를 생성해서 보여줌.
+4. 다 뽑고 나면 사용자가 입력한 숫자와 비교해 몇 등인지 대화상자로 표시
+
+사용의 입력값과 추첨기에서 나온 값을 비교. 6개의 변수 / 6개의 숫자 있는 배열, 7의 숫자를 추출 했을 것으로 예상됨.
+두 배열을 비교해서 조건 맞는 등수의 결과를 사용자에 보여줌.-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공 추첨기</title>
+</head>
+<body>
+    <style>
+        .ball {
+            display: inline-block;
+            border: 1px solid black;
+            border-radius: 20px;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 20px;
+            text-align: center;
+            margin-right: 20px;
+        }
+    </style>
+    <form id="form">
+        <input name="number" type="text" placeholder="6개 번호를 쉼표로 구분해 입력해주세요">
+        <button>추첨</button>
+    </form>
+    <div id="winballs"> 당첨숫자 : </div>
+    <div id="bonus"> 보너스숫자 : </div>
+    <script>
+        function drawBall(number, $parent) {
+            const $ball = document.createElement('div');
+            $ball.className = 'ball';
+            $ball.textContent = number;
+            $parent.appendChild($ball);
+        }
+
+        //클리어
+        function clearPreviousResult() {
+            const $ballNodeList = document.querySelectorAll(".ball");
+            $ballNodeList.forEach((child) => child.parentNode.removeChild(child));
+            console.log($ballNodeList);
+        }
+
+        const setTimeoutPromise = (ms) => new Promise((resolve, reject) => {
+            setTimeout(resolve, ms);
+        })
+
+        const $form = document.querySelector("#form");
+        $form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const numberStr = event.target.number.value;
+            //입력 값이 6개 인지
+            const numberArr = numberStr.split(',');
+            if (numberArr.length !== 6) {
+                return alert('6개가 아닙니다.!');
+            }
+            // 입력 값이 숫자 인지
+            const parsedNumArr = numberArr.map((n) => parseInt(n));
+            // console.log(parsedNumArr);
+            const nanCheckArr = parsedNumArr.filter((n) => Number.isNaN(n));
+            if (nanCheckArr.length > 0) {
+                return alert('숫자를 입력하세요.');
+            }
+
+            // 중복 확인
+            const { size } = new Set(parsedNumArr);
+            if (size !== 6) {
+                return alert('중복된 값이 있습니다.');
+            }
+
+            // 유효숫자
+            const outNum = parsedNumArr.find((n) => n > 45 || n < 1);
+            if (outNum !== undefined) {
+                return alert('1에서 45까지 값만 사용해 주세요.');
+            }
+
+            for (let i = 0; i < numberArr.length; i++) {
+                const n = numberArr[i];
+                const num = parseInt(n);
+
+                if (isNaN(num)) {
+                    return alert('숫자를 입력하세요.');                   
+                }
+                if (num > 45 || num <= 0) {
+                    return alert('1 ~ 45의 값을 입력해 주세요.');              
+                }
+                if (numberArr.slice(i + 1, numberArr.length).includes(n)) {
+                    return alert('중복된 값이 있습니다.');                   
+                }
+            }
+
+            // 숫자 섞기
+            const candidate = Array(45).fill().map((v, i) => i + 1);
+            const shuffle = [];
+            while (candidate.length > 0) {
+                const random = Math.floor(Math.random() * candidate.length);
+                const spliceArray = candidate.splice(random, 1);
+                const value = spliceArray[0];
+                shuffle.push(value);
+            }
+            console.log(shuffle);
+
+            const winballs = shuffle.slice(0, 6).sort((a, b) => a - b);
+            const bonus = shuffle[6];
+            console.log(winballs, bonus);
+
+            const $winballs = document.querySelector("#winballs");
+            const $bonus = document.querySelector("#bonus");
+            for (let i = 0; i < winballs.length; i++) {
+                await setTimeoutPromise(1000).then(drawBall(winballs[i], $winballs));
+            }
+
+            await setTimeoutPromise(1000).then(drawBall(bonus, $bonus));
+            let count = 0;
+            parsedNumArr.forEach((myNum) => {
+                if (winballs.includes(myNum)) {
+                    count++;
+                }
+            })
+
+            if (count === 6) {
+                alert('1등! 현실 로또 당첨될 운을 여기에 쓰시다니...');
+            } else if (count === 5) {
+                if (parsedNumArr.includes(bonus)) {
+                    alert('2등! 보너스 공이지만 숫자 6개를 맞추셨네요.');
+                } else {
+                    alert('3등! 아쉽습니다. 그래도 축하드려요.')
+                }
+            } else if (count === 4) {
+                alert('4등! 5만 원 축하드려요.');
+            } else if (count === 3) {
+                alert('5등! 5천 원 축하드려요.');
+            } else {
+                alert('로또 참 어렵죠?');
+            }
+        })
+    </script>
+</body>
+</html>
