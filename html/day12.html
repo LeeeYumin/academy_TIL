@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>과제풀이+수업</title>
+</head>
+<body>
+    <!--과제 1번 풀이-->
+    <!-- <script>
+        try {
+            const arr = [10, 20, '30', 40, 50, 60];
+            arr.forEach((n) => {
+                console.log(typeof n);
+                if ((typeof n) !== "number") {
+                    throw new TypeError("숫자가 아닙니다.");
+                }
+            })
+        } catch (error) {
+            console.error(error);
+        }
+    </script> -->
+
+    <script>
+       const stock = new Map();
+        function addItem(k, v) {
+            stock.set(k, v);
+        }
+        function deleteItem(k) {
+            stock.delete(k);
+        }
+        function getItem(k) {
+            return stock.get(k);
+        }
+        function clearCart() {
+            stock.clear();
+        }
+        function isExist(k) {
+            return stock.has(k) && stock.get(k) > 0;
+        }
+        function changeStockAmount(k, orderAmount) {
+            addItem(k, getItem(k) - orderAmount);
+        };
+
+        //초기 재고 설정
+        addItem('orange', 100);
+        addItem('apple', 30);
+        addItem('pineapple', 50);
+        addItem('tomato', 0);
+        addItem('banana', 200);
+        console.log(stock);
+
+        // 주문 내용 가정
+        const orderList = [
+            {
+                category: 'fruit',
+                name: 'apple',
+                amount: 10
+            },
+            {
+                category: 'fruit',
+                name: 'orange',
+                amount: 200
+            },
+            {
+                category: 'fruit',
+                name: 'tomato',
+                amount: 10
+            }
+        ]
+
+        // 주문을 처리하는 부분
+       orderList.forEach((order) => {
+            if (isExist(order.name)) {
+                // 주문수량이 가능한지
+                if (getItem(order.name) >= order.amount)
+                {
+                    // 주문처리
+                    changeStockAmount(order.name, order.amount);
+                    console.info(stock);
+                } else {
+                    console.info("재고가 부족합니다.");
+                }
+            } else {
+                console.error('Out of Stock!');
+            }
+        })     
+
+    </script>
+
+
+    <!--과제 2번 풀이-->
+    <script>
+        // function checkIncludesItems(addItems, cart) { //카트에 존재하고 있음을 나타내는 함수명
+        //     let result = 0;
+        //     addItems.forEach((item) => {
+        //         if (cart.includes(item)) {
+        //             result++;
+        //         };
+        //     })
+        //     return result;
+        // }
+        // const addItems = ["banana", "apple","tomato", "orange"];
+        // const cart = ["banana", "watermelon", "melon", "cherry", "apple"];
+        // console.log(checkIncludesItems(addItems, cart));
+    </script>
+    
+</body>
+</html>

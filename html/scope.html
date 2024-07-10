@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scope</title>
+</head>
+<body>
+    <script>
+        // function a() {
+        //     var t = 1;
+        // }
+        // console.log(t);
+
+        // if (true) {
+        //     var x = 10;
+        // }
+        // console.log(x);
+
+        // for (var i = 0; i < 5; i++) {
+        // }
+        // console.log(i);
+
+        const z = 1;
+        function foo() {
+            const z = 10;
+            function bar() {
+                console.log(z);
+        }
+        bar();
+        }
+
+        //동적 스코프
+        let myObj = {
+            val1: 100,
+            func1: function () {
+                console.log(this);
+            }
+        }
+        myObj.func1();
+        let myObj2 = {
+            val1: 100,
+            func1: function () {
+                console.log(this);
+            }
+        }
+        let test = myObj2.func1;
+        test()
+        
+    </script>
+</body>
+</html>
