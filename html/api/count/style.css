@@ -1,0 +1,30 @@
+.section-center {
+    width: 90vw;
+    margin: 5rem auto;
+    max-width: 1170px;
+}
+
+.deadline {
+    display: flex;
+  }
+  .deadline-format {
+    background: var(--clr-grey-1);
+    color: var(--clr-white);
+    margin-right: 1rem;
+    width: 5rem;
+    height: 5rem;
+    display: grid;
+    place-items: center;
+    text-align: center;
+  }
+  .deadline-format span {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+  }
+  .deadline h4:not(.expired) {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+    letter-spacing: var(--spacing);
+  }

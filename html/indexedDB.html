@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인덱스트DB</title>
+</head>
+<body>
+    <script>
+        const request = indexedDB.open('myDB');
+        request.onerror = function (event) {
+            console.log(`error : ${event.target.errorCode}`);
+        }
+        request.onsuccess = (event) => {
+            console.log("connected!");
+            const db = event.target.result;
+
+            const transaction = db.transaction(['myStore'], 'readwrite');
+            const store = transaction.objectStore('myStore');
+
+            //store 에서 id의 값이 1인, 2인 데이터 검색
+            store.add({id: 1, data: 'First Data'});
+            store.add({id: 2, data: 'Second Data'});
+
+            const item = store.get(2);
+            item.onsuccess = (event) => {
+                const record = event.target.result;
+                console.log(record);
+            }
+        }
+
+        // 데이터베이스 버전 업그레이드가 필요한 경우
+        request.onupgradeneeded = (event) => {
+            const db = event.target.result;
+            db.createObjectStore('myStore', {keyPath:'id'});
+        }
+        // request.addEventListener('error', (event) => {
+        //     console.log(`error : ${event.target.errorCode}`)
+        // })
+
+    </script>
+</body>
+</html>

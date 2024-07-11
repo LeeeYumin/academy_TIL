@@ -1,0 +1,54 @@
+<!--현재 날짜와 시간을 초 단위로 반복 출력하는 예제-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function printNow(){
+        //     const today = new Date();
+        //     const dayNames = ['(일요일)','(월요일)','(화요일)','(수요일)','(목요일)','(금요일)','(토요일)'];
+        //     const day = dayNames[today.getDay()];
+        //     const year = today.getFullYear();
+        //     const month = today.getMonth() + 1;
+        //     const date = today.getDate();
+        //     let hour = today.getHours();
+        //     let minute = today.getMinutes();
+        //     let second = today.getSeconds();
+        //     const ampm = hour >= 12 ? 'PM' : 'AM';
+
+        //     hour %= 12;
+        //     hour = hour || 12;
+
+        //     // 10 미만의 분과 초 표시 (앞에 0 유무)
+        //     minute = minute < 10 ? `0${minute}` : {minute};
+        //     second = second < 10 ? `0${second}` : {second};
+
+        //     const now = `${year}년 ${month}월 ${date}일 ${day} ${hour}:${minute}:${second} ${ampm}`;
+        //     console.log(now);
+
+        //     //1초마다 재귀처리
+        //     setTimeout(printNow, 1000);
+        // }
+
+        var now = new Date();
+        console.log("현재 : ", now);
+        
+        //위의 now를 기준으로 시작함.. 좀 헷갈릴 수 있음.
+        var fifteenDaysAgo = new Date(now.setDate(now.getDate() - 15));
+        console.log("15일전 : ", fifteenDaysAgo);
+
+        var twentyDaysAfter = new Date(now.setDate(now.getDate() + 20));
+        console.log("20일 후 : ", twentyDaysAfter);
+
+        var nineMonthAgo = new Date(now.setMonth(now.getMonth() - 8));
+        console.log("9개월 전 : ", nineMonthAgo);
+
+        var oneYearAgo = new Date(now.setFullYear(now.getFullYear() -1));
+        console.log("1년 전 : ", oneYearAgo);
+    </script>
+</body>
+</html>

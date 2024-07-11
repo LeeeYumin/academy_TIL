@@ -17,6 +17,8 @@ const $form = document.querySelector(".grocery-form");
 const $input = document.querySelector("#grocery");
 const $submitBtn = document.querySelector(".submit-btn");
 const $grocerOl = document.querySelector(".grocery-list");
+const $clearBtn = document.querySelector(".clear-btn");
+const $alert = document.querySelector(".alert")
 const groceryBud = new Map();
 
 let editFlag = false;
@@ -45,7 +47,7 @@ function getItemFromLocalStorage(id) {
   return filteredItems[0]
 }
 
-function removeFromLocalStorage() {
+function removeFromLocalStorage(id) {
   let items = getLocalStorage();
 
   items = items.filter((item) => item.id !== id);
@@ -61,8 +63,11 @@ function editLocalStorage(id, value) {
     }
     return item;
   });
-  console.log(newItems)
   localStorage.setItem("list", JSON.stringify(items));
+}
+
+function removeAllItemFromLocalStorage(key) {
+  localStorage.removeItem(key);
 }
 
 function deleteItem(event) {
@@ -72,9 +77,11 @@ function deleteItem(event) {
     $grocerOl.removeChild($parent);
   }
 
-  setBackToDefault();
-
   removeFromLocalStorage(id);
+  
+  setBackToDefault();
+  
+  alertMessage("아이템이 삭제되었습니다.");
 }
 
 function editItem(event) {
@@ -87,6 +94,22 @@ function editItem(event) {
   editFlag = true;
   
   $submitBtn.textContent = "수정";
+}
+
+function clearItems() {
+  const child = document.querySelectorAll(".grocery-item");
+  child.forEach((item) => $grocerOl.removeChild(item));
+
+  removeAllItemFromLocalStorage("list");
+
+  setBackToDefault();
+
+  alertMessage("전체 아이템이 삭제되었습니다.");
+}
+
+function alertMessage(message) {
+  $alert.textContent = message;
+  setTimeout(() => $alert.textContent = '', 1000);
 }
 
 // set back to defaults
@@ -102,10 +125,12 @@ function addItem(event) {
   // 처음 또는 신규 입력 시
   const value = $input.value;
   const id = new Date().getTime().toString();
+  let message = ' 되었습니다.'
   if (value !== "" && !editFlag) {
     addToLocalStrage(id, value);
     const $li = document.createElement("li");
     $li.setAttribute("data-id", id);
+    $li.classList.add('grocery-item');
     const $groceryName = document.createElement("p");
     // storage에서 저장하고 받아오도록 수정
     $groceryName.textContent = getItemFromLocalStorage(id).value;
@@ -121,13 +146,20 @@ function addItem(event) {
     $li.appendChild($edit);
     $li.appendChild($delete);
     $grocerOl.appendChild($li);
+
+    message = value + ' 추가 ' + message;
+    // alertMessage(`${value} 추가 ${message}`);
   } else {
     editLocalStorage(editId, value);
     console.log(editId); 
     // 가져와서 수정
     editElement.textContent = getItemFromLocalStorage(editId).value;
+    message = value + ' 수정 ' + message;
+    // alertMessage(`${value} 수정 ${message}`);
   }
   setBackToDefault();
+  alertMessage(message);
 }
 
 $form.addEventListener("submit", addItem);
+$clearBtn.addEventListener('click', clearItems);
