@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Array
+        const numberArr = [1, 2, 3, 5, 9]
+        const objectArr = [
+            {name : 'Kim', age : 30},
+            {name : 'Sam', age : 25},
+            {name : 'Hello', age : 32}
+        ]
+
+        console.log(objectArr.findIndex((item) => item.age > 20));
+        console.log(objectArr.findIndex((item) => item.name <'Kim'));
+    </script>
+
+    <script>
+        //reduce
+        
+        //sort
+        const arr = [
+            {name : 'banana', price : 1000},
+            {name : 'peach', price : 2000},
+            {name : 'berry', price : 3000}
+        ]
+    </script>
+
+    <script>
+    //some
+        const array = [1, 2, 3, 4, 7]
+        const result = array.some((currentValue) => currentValue%2===0);
+        console.log(result);
+    </script>
+</body>
+</html>

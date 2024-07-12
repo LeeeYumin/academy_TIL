@@ -7,18 +7,23 @@
 </head>
 <body>
     <script>
+        // 데이터베이스(myDB) 열기
         const request = indexedDB.open('myDB');
+        // 데이터베이스(myDB) 열기 실패 시 에러 처리
         request.onerror = function (event) {
             console.log(`error : ${event.target.errorCode}`);
         }
+        // 데이터베이스(myDB) 열기 성공 시 데이터 저장 및 검색
         request.onsuccess = (event) => {
             console.log("connected!");
+            // 데이터베이스 객체 가져오기
             const db = event.target.result;
 
+            // 스토어(store)에 데이터 저장
             const transaction = db.transaction(['myStore'], 'readwrite');
             const store = transaction.objectStore('myStore');
 
-            //store 에서 id의 값이 1인, 2인 데이터 검색
+            // store 에서 id의 값이 1인, 2인 데이터 검색 (고유값이라 중복되면 안됨)
             store.add({id: 1, data: 'First Data'});
             store.add({id: 2, data: 'Second Data'});
 
@@ -31,6 +36,7 @@
 
         // 데이터베이스 버전 업그레이드가 필요한 경우
         request.onupgradeneeded = (event) => {
+            // 데이터베이스 객체 가져오기
             const db = event.target.result;
             db.createObjectStore('myStore', {keyPath:'id'});
         }
