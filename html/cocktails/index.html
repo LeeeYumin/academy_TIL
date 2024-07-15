@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cocktails</title>
-</head>
-<body>
-    <h1>Cocktails API</h1>
-    <div id="search-form"></div>
+    <!-- font-awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <!-- css -->
+    <link rel="stylesheet" href="./cockstyle.css" />
+  </head>
+
+  <body>
+    <form class="search-form">
+      <h1>Cocktails API</h1>
+      <input type="text" 
+             placeholder="Search your favorite cocktail" 
+             name="name" />
+    </form>
+    <div class="loading">
+      <img src="./loading.gif" alt="loading">
+    </div>
+    <h2 class="title"></h2>
     <div class="item-container"></div>
     <script type="module" src="./app.js"></script>
-</body>
+  </body>
 </html>
