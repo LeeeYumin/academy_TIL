@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <script>
+        //0717
+        const kim = {
+            name : "kim",
+            age : 10,
+            addr : "korea",
+            friends : [
+                {name : "lee", age : 14, addr : "japan"},
+                {name : "sally", age : 18, addr : "usa"},
+            ]
+        }
+        const {name :userName, friends : [,{name: jpFriend}]} = kim;
+        alert(userName);
+        alert(jpFriend);
+        // users.map((user) => renderUser(user));
+        // for (const user of users) {
+
+        // }
+    </script> -->
+
+    <script>
+        //0717
+        class Person {
+            constructor({name, age}){
+                this.name = name;
+                this.age = age;
+            }
+            introduce() {
+                return `제 이름은 ${this.name}입니다.`
+            }
+        }
+
+        class Student extends Person {
+            constructor({grade, ...rest}) {
+                super(rest);
+                this.grade = grade;
+            }
+            introduce() {
+                return super.introduce() + `저는 ${this.grade}학년입니다`
+            }
+        } 
+        const s = new Student({grade : 3, name : "zzz", age : 19});
+        alert(s.introduce());
+    </script>
+</body>
+</html>

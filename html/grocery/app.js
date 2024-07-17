@@ -13,153 +13,34 @@
 - 전체 리스트를 삭제하기
 - Storage에 저장된 내용 삭제하기, 자료구조에 담은 내용 삭제 */
 
-const $form = document.querySelector(".grocery-form");
-const $input = document.querySelector("#grocery");
-const $submitBtn = document.querySelector(".submit-btn");
-const $grocerOl = document.querySelector(".grocery-list");
-const $clearBtn = document.querySelector(".clear-btn");
-const $alert = document.querySelector(".alert")
-const groceryBud = new Map();
+import { clearItems, addItem, editItem, deleteItem } from "./itemController.js";
 
-let editFlag = false;
-let editElement;
-let editId = '';
-// ****** local storage **********
-
-// add to local storage
-function addToLocalStrage(id, value) {
-  const grocery = { id, value };
-  let items = getLocalStorage();
-  items.push(grocery);
-  localStorage.setItem("list", JSON.stringify(items));
-}
-
-function getLocalStorage() {
-  return localStorage.getItem("list")
-    ? JSON.parse(localStorage.getItem("list"))
-    : [];
-}
-
-function getItemFromLocalStorage(id) {
-  const items = getLocalStorage();
-
-  const filteredItems = items.filter((item) => item.id === id);
-  return filteredItems[0]
-}
-
-function removeFromLocalStorage(id) {
-  let items = getLocalStorage();
-
-  items = items.filter((item) => item.id !== id);
-  localStorage.setItem("list", JSON.stringify(items));
-}
-
-function editLocalStorage(id, value) {
-  let items = getLocalStorage();
-
-  const newItems = items.map((item) => {
-    if (item.id === id) {
-      item.value = value;
-    }
-    return item;
-  });
-  localStorage.setItem("list", JSON.stringify(items));
-}
-
-function removeAllItemFromLocalStorage(key) {
-  localStorage.removeItem(key);
-}
-
-function deleteItem(event) {
-  const $parent = event.currentTarget.parentElement;
-  const id = $parent.dataset.id;
-  if (!editFlag) {
-    $grocerOl.removeChild($parent);
-  }
-
-  removeFromLocalStorage(id);
-  
-  setBackToDefault();
-  
-  alertMessage("아이템이 삭제되었습니다.");
-}
-
-function editItem(event) {
-  const $parent = event.currentTarget.parentElement;
-  const id = $parent.dataset.id;
-  editId = id;
-
-  editElement = event.currentTarget.previousElementSibling;
-  $input.value = editElement.textContent;
-  editFlag = true;
-  
-  $submitBtn.textContent = "수정";
-}
-
-function clearItems() {
-  const child = document.querySelectorAll(".grocery-item");
-  child.forEach((item) => $grocerOl.removeChild(item));
-
-  removeAllItemFromLocalStorage("list");
-
-  setBackToDefault();
-
-  alertMessage("전체 아이템이 삭제되었습니다.");
-}
-
-function alertMessage(message) {
-  $alert.textContent = message;
-  setTimeout(() => $alert.textContent = '', 1000);
-}
-
-// set back to defaults
-function setBackToDefault() {
-  $input.value = "";
-  editFlag = false;
-  editId = "";
-  $submitBtn.textContent = "입력";
-}
-
-function addItem(event) {
-  event.preventDefault();
-  // 처음 또는 신규 입력 시
-  const value = $input.value;
-  const id = new Date().getTime().toString();
-  let message = ' 되었습니다.'
-  if (value !== "" && !editFlag) {
-    addToLocalStrage(id, value);
-    const $li = document.createElement("li");
-    $li.setAttribute("data-id", id);
-    $li.classList.add('grocery-item');
-    const $groceryName = document.createElement("p");
-    // storage에서 저장하고 받아오도록 수정
-    $groceryName.textContent = getItemFromLocalStorage(id).value;
-    const $edit = document.createElement("button");
-    $edit.setAttribute("id", "edit-item");
-    $edit.textContent = "수정";
-    $edit.addEventListener("click", editItem);
-    const $delete = document.createElement("button");
-    $delete.setAttribute("id", "delete-item");
-    $delete.textContent = "삭제";
-    $delete.addEventListener("click", deleteItem);
-    $li.appendChild($groceryName);
-    $li.appendChild($edit);
-    $li.appendChild($delete);
-    $grocerOl.appendChild($li);
-
-    message = value + ' 추가 ' + message;
-    // alertMessage(`${value} 추가 ${message}`);
+export function initListContainer(event) {
+  console.log("Event delegation.");
+  if (event.target.textContent === '수정') {
+      console.log(event.target.textContent);
+      editItem(event);
+  } else if (event.target.textContent === '삭제') {
+      console.log(event.target.textContent);
+      deleteItem(event);
   } else {
-    editLocalStorage(editId, value);
-    console.log(editId); 
-    // 가져와서 수정
-    editElement.textContent = getItemFromLocalStorage(editId).value;
-    message = value + ' 수정 ' + message;
-    // alertMessage(`${value} 수정 ${message}`);
+      //   console.log("잘못된 이벤트 입니다.!");
+      throw new TypeError("잘못된 이벤트 입니다.!");
   }
-  setBackToDefault();
-  alertMessage(message);
 }
 
-$form.addEventListener("submit", addItem);
-$clearBtn.addEventListener('click', clearItems);
+
+function startGroceryBud() {
+  const $form = document.querySelector(".grocery-form");
+  const $clearBtn = document.querySelector(".clear-btn");
+  const $grocerOl = document.querySelector(".grocery-list");
+  try {
+    $form.addEventListener("submit", addItem);
+    $clearBtn.addEventListener('click', clearItems);
+    $grocerOl.addEventListener('click', initListContainer);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+startGroceryBud();

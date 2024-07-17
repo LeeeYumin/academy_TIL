@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //0717
+        const arr1 = [ 1, 2, 3];
+        const arr2 = [ 4, 5, 6];
+        const arr3 = [ 7, 8, 9]; 
+        console.log([...arr1, ...arr2, ...arr3]);
+        console.log([arr1, arr2, arr3]);
+
+        arr1[0] *= 10;
+        arr3[0] *= 10;
+        arr2[0] *= 10;
+        console.log([...arr1, ...arr2, ...arr3]);
+        console.log([arr1, arr2, arr3]);
+    </script>
+
+    <script>
+        //0717
+        const myObject1 = {
+            laptop : 'MacBook Pro',
+            tablet : 'oPad Pro 11'
+        }
+
+        const myObject2 = {
+            ...myObject1,
+            phone : 'Galaxy S23 Ultra'
+        }
+        console.log(myObject2);
+    </script>
+    <script>
+        //0717
+
+        function sumAll(...args) {
+            console.log(args);
+            let sum = 0;
+
+            for (let arg of args) {
+                sum += arg;
+            }
+            return sum;
+        }
+        alert(sumAll(1))
+        alert(sumAll(1, 2))
+        alert(sumAll(1, 2, 3))
+
+        // function showName(firstName, ...titles, lastName) {
+        //     alert(firstName + ' ' + lastName); //Julius Caesar
+
+        //     // 나머지 인수들은 배열 titles에 할당됨
+        //     // titles = ["Consul", "Imperator"]
+        //     alert(titles[0]); //Consul
+        //     alert(titles[1]); //Imperator
+        //     alert(titles[2]); //Imperator
+        //     alert(titles.length); //
+        // }
+        // showName("Julius", "Caesar", "Consul", "Imperator", "Glocol"); 
+        
+    </script>
+
+</body>
+</html>

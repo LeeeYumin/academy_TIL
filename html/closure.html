@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //0717
+        function foo() {
+            const x = 1;
+            function bar() {
+                debugger;
+
+                console.log(x);
+            }
+            bar();
+        }
+    </script>
+
+    <script>
+        //0717
+        var box = document.querySelector('.box');
+        var toggleBtn = document.querySelector('.toggle');
+
+        function closure(){
+            var isShow = false;
+            return function() {
+                console.log(isShow);
+                box.style.display = isShow ? 'block' : 'none';
+                isShow = !isShow;
+            }
+        }
+        var toggle = closure();
+        toggleBtn.onclick = toggle;
+    </script>
+    
+    <button>카운터</button>
+    <script>
+        //0717
+        var increase = (function() {
+            var counter = 0;
+            return function(){
+                return ++counter;
+            }
+        })();
+        document.querySelector('button').onclick = function() {
+            document.querySelector('p').innerHTML = increase();
+        }
+    </script>
+</body>
+</html>
