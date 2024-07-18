@@ -1,32 +1,54 @@
 <!-- drink.html -->
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Single Cocktail</title>
-    <!-- font-awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-    />
-    <!-- css -->
-    <link rel="stylesheet" href="./cockstyle.css" />
-  </head>
-  <body>
-    <div class="loading">
-      <img src="./loading.gif" alt="loading">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Single Cocktail</title>
+  <!-- font-awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+  <!-- css -->
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <div class="loading">
+    <img src="./loading.gif" alt="loading">
+  </div>
+  <article class="single-drink">
+    <img class="drink-img">
+    <div class="drink-info">
+      <p class="drink-name"></p>
+      <p class="desc"></p>
+      <ul class="ingredients"></ul>
+      <button class="btn">All cocktails</button>
     </div>
-    <article class="single-drink">
-      <img class="drink-img">
-      <div class="drink-info">
-        <p class="drink-name"></p>
-        <p class="desc"></p>
-        <ul class="ingredients"></ul>
-        <button class="btn">All cocktails</button>
-      </div>
-    </article>
-    <section class="similar-cocktails"></section>
-    <script type="module" src="./singleDrink.js"></script>
-  </body>
+  </article>
+  <!-- ingredient-modal -->
+  <div class="modal-overlay">
+    <section class="modal-container">
+      <h2 class="ingredient-name"> ingredient-name</h2>
+      <article class="single-ingredient">
+        <img class="ingredient-img">
+        <div class="ingredient-info">
+          <!-- <p class="ingredient-name"></p> -->
+          <p class="ingredient-desc"></p>
+        </div>
+      </article>
+      <button class="close-btn"><i class="fas fa-times"></i></button>
+    </section>
+  </div>
+  <!-- <section class="ingredient-info"></section>
+      <article class="single-ingredient">
+        <img class="ingredient-img">
+        <div class="ingredient-info">
+          <p class="ingredient-name"></p>
+          <p class="ingredient-desc"></p>
+        </div>
+      </article> -->
+  <section class="similar-cocktails"></section>
+  <script type="module" src="./singleDrink.js"></script>
+</body>
+
 </html>

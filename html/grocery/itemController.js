@@ -5,7 +5,8 @@ import { addToLocalStrage,
          getItemFromLocalStorage,
          editLocalStorage } from "./localStorage.js";
 
-let editFlag = false;
+// let editFlag = false;
+const editMode = new EditMode();
 let editElement;
 let editId = '';
 
@@ -31,7 +32,8 @@ export function editItem(event) {
 
     editElement = event.target.previousElementSibling;
     $input.value = editElement.textContent;
-    editFlag = true;
+    editMode.setEditMode(true);
+    // editFlag = true;
 
     $submitBtn.textContent = "수정";
 }
@@ -39,7 +41,7 @@ export function editItem(event) {
 export function deleteItem(event) {
     const $parent = event.target.parentElement;
     const id = $parent.dataset.id;
-    if (!editFlag) {
+    if (!editMode.isEditMode()) {
         $grocerOl.removeChild($parent);
     }
 
@@ -56,7 +58,8 @@ export function addItem(event) {
     const value = $input.value;
     const id = new Date().getTime().toString();
     let message = ' 되었습니다.'
-    if (value !== "" && !editFlag) {
+    
+    if (value !== "" && !editMode.isEditMode()) {
         addToLocalStrage(id, value);
         const $li = document.createElement("li");
         $li.setAttribute("data-id", id);
@@ -80,6 +83,7 @@ export function addItem(event) {
         message = value + ' 추가 ' + message;
         // alertMessage(`${value} 추가 ${message}`);
     } else {
+        console.log(editMode.isEditMode());
         editLocalStorage(editId, value);
         console.log(editId);
         // 가져와서 수정
@@ -94,7 +98,21 @@ export function addItem(event) {
 // set back to defaults
 function setBackToDefault() {
     $input.value = "";
-    editFlag = false;
+    editMode.setEditMode(false);
+    // editFlag = false;
     editId = "";
     $submitBtn.textContent = "입력";
+}
+
+// Modal 과제 추가
+function EditMode() {
+    var editMode = false;
+
+    this.setEditMode = function(isEditMode) {
+        editMode = isEditMode;
+    }
+
+    this.isEditMode = function() {
+        return editMode;
+    }
 }

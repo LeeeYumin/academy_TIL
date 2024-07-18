@@ -1,9 +1,13 @@
 import { setIngredients } from "./setIngredients.js";
 
-function displayDrinks(data) {
-    const currentPage = window.location.pathname.split('/').slice(-1)[0];
-    const { drinks } = data;
-    if (currentPage === 'index.html') {
+const INGREDIENT_INFO = "search.php";
+const DRINK_INFO = "lookup.php";
+const SIMILAR_INFO = "filter.php";
+
+function displayDrinks(dataset) {
+    const { lastPath, searchKey, data } = dataset;
+    const { drinks, ingredients } = data;
+    if (searchKey === 's') {
         const $title = document.querySelector(".title");
         const $container = document.querySelector(".item-container");
         
@@ -14,11 +18,11 @@ function displayDrinks(data) {
             $title.textContent = "";
             drinks.forEach((drink) => createSingleItem(drink, $container));
         }
-    } else if (currentPage === 'drink.html') {
-        if (drinks.length === 1) {
+    } else if (searchKey === 'i') {
+        if (lastPath === DRINK_INFO) {
             createSinglePageItem(drinks[0]);
             setIngredients();
-        } else {
+        } else if (lastPath === SIMILAR_INFO) {
             const $similar = document.querySelector('.similar-cocktails');
             $similar.innerHTML = null;
 
@@ -27,8 +31,26 @@ function displayDrinks(data) {
                 if (drink.strDrink === $name.textContent) return;
                 createSingleItem(drink, $similar)
             });
+        } else if (lastPath === INGREDIENT_INFO) {
+            createSingleIngredientItem(ingredients[0])
+            console.log(data);
         }
+    } else {
+        console.error(`알 수 없는 요청입니다. ${lastPath}, ${searchKey}`);
     }
+}
+
+function createSingleIngredientItem({ strIngredient: name, strDescription: desc}) {
+    // const { strIngredient: name, strDescription: desc} = ingredient;
+
+    const $img = document.querySelector(".ingredient-img");
+    $img.setAttribute("src", `https://www.thecocktaildb.com/images/ingredients/${name}-Medium.png`);
+    
+    const $name = document.querySelector(".ingredient-name");
+    $name.textContent = name;
+
+    const $desc = document.querySelector(".ingredient-desc");
+    $desc.textContent = desc;
 }
 
 function createSinglePageItem(drink) {
@@ -36,7 +58,7 @@ function createSinglePageItem(drink) {
     const { strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5 } = drink;
     const ingredients = [ strIngredient1, strIngredient2, strIngredient3, strIngredient4, strIngredient5 ];
 
-    const $img = document.querySelector("article img");
+    const $img = document.querySelector(".drink-img");
     $img.setAttribute("src", thumb);
     
     const $name = document.querySelector(".drink-name");
