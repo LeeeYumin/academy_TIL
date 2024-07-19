@@ -195,7 +195,7 @@ Slider
 .slide {
   position: absolute;
   width: 100%;
-  height: 50%;
+  height: 100%;
   /* background: var(--clr-primary-9); */
   color: var(--clr-white);
   display: grid;
@@ -228,14 +228,22 @@ Slider
     url("./img-2.jpeg") center/cover no-repeat;
 }
 .btn-container {
+    top: 20vh;
+    left:8vh;
+    width: 88%;
   display: flex;
-  justify-content: center;
-  margin-top: 0.75rem;
+  position:absolute;
+  justify-content: space-between;
+  /* margin-top: 0.75rem; */
+  margin-top: 4rem;
 }
 .prev-btn,
 .next-btn {
-  background: transparent;
-  border-color: transparent;
+  background: val(--clr-white);
+  border-color: val(--clr-black);
+  border-radius: 50%;
+  width:2.5rem;
+  height:2.5rem;
   font-size: 1.75rem;
   cursor: pointer;
   margin: 0 0.25rem;
@@ -248,6 +256,11 @@ Slider
 .next-btn:hover {
   color: var(--clr-grey-3);
 }
+.prev-btn:disabled,
+.next-btn:disabled {
+  color: var(--clr-grey-8);
+}
+
 
 @media screen and (min-width: 576px) {
   .slider-container {

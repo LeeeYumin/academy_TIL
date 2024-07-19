@@ -14,7 +14,8 @@ const carousel = new Carousel();
 
 function Carousel() {
     var index = 0;
-    $prevBtn.style.display = 'none';
+    // $prevBtn.style.display = 'none';
+    $prevBtn.disabled = true;
 
     this.nextIndex = function() {
         index++;
@@ -28,12 +29,16 @@ function Carousel() {
 
     function displaySlide() {
         if (index === $slideNodes.length - 1) {
-            displayButton($nextBtn, 'none'); 
+            // displayButton($nextBtn, 'none'); 
+            disabledButton($nextBtn, true); 
         } else if (index === 0) {
-            displayButton($prevBtn, 'none');
+            // displayButton($prevBtn, 'none');
+            disabledButton($prevBtn, true);
         } else {
-            displayButton($nextBtn, 'block');
-            displayButton($prevBtn, 'block');
+            // displayButton($nextBtn, 'block');
+            // displayButton($prevBtn, 'block');
+            disabledButton($nextBtn, false); 
+            disabledButton($prevBtn, false);
         }
         slide();
     }
@@ -44,6 +49,10 @@ function Carousel() {
 
     function displayButton(btn, display) {
         btn.style.display = display;
+    }
+
+    function disabledButton(btn, disabled) {
+        btn.disabled = disabled;
     }
 }
 
