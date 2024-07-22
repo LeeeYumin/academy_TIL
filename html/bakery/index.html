@@ -1,11 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>WCB Fashion Collection</title>
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 </head>
 <body>
+    <!-- 로딩 화면 -->
+    <div id="loading">
+        <p>Loading...</p>
+        <div id="loading-screen"></div>
+    </div>
+    <!-- 내비게이션 메뉴 -->
+    <nav>
+        <button id="menu-open" class="btn-menu">
+            <!-- svg 부분은 이미지처럼 링크 연결해도 됨-->
+            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                <title>메뉴 열기</title>
+                <path clip-rule="evenodd" d="m4.25 8c0-.41421.33579-.75.75-.75h14c.4142 0 .75.33579.75.75s-.3358.75-.
+            </svg>
+        </button>
+        <div id="menu-panel">
+            <button id="menu-close" class="btn-menu">
+                <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                    <title>메뉴 닫기</title>
+                    <path clip-rule="evenodd" d="m7.53033 6.46967c-.29289-.29289-.76777-.29289-1.06066 0s-.29289.7677
+                </svg>
+            </button>
+            <ul class="menu-list">
+                <li><a href="#">Online Shop</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">YouTube</a></li>
+                <li><a href="mailto:hello@example.com">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+      
+    <section class="hero">
+        <h1 class="title">GLC Backery<br>Collection</h1>
+    </section>
+      
+    <section class="concept">
+        <div class="wrapper">
+            <h2 class="title fadein">Passion</h2>
+            <p class="fadein">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, maiores aperiam a cupiditate asperiores mole
+            </p>
+        </div>
+        <img src="images/concept.jpg" alt="">
+    </section>
     
-</body>
-</html>
+    <section class="gallery">
+        <div class="gallery-image">
+            <img src="images/img1.jpg" alt="">
+        </div>
+        <div class="gallery-content wrapper">
+            <h2 class="title fadein">Dessert</h2>
+            <ul class="gallery-thumbnails">
+                <li class="fadein"><img src="images/img1.jpg" alt=""></li>
+                <li class="fadein"><img src="images/img2.jpg" alt=""></li>
+                <li class="fadein"><img src="images/img3.jpg" alt=""></li>
+                <li class="fadein"><img src="images/img4.jpg" alt=""></li>
+                <li class="fadein"><img src="images/img5.jpg" alt=""></li>
+                <li class="fadein"><img src="images/img6.jpg" alt=""></li>
+                <li class="fadein"><img src="images/img7.jpg" alt=""></li>
+                <li class="fadein"><img src="images/img8.jpg" alt=""></li>
+                <li class="fadein"><img src="images/img9.jpg" alt=""></li>
+            </ul>
+        </div>
+    </section>
+    
+    <section class="shop">
+        <div class="shop-content wrapper">
+            <h2 class="title fadein">Shop</h2>
+            <p class="fadein">언제나 무료 배송. 편리한 온라인 샵을 이용해주세요.</p>
+            <a class="btn fadein" href="#">온라인 샵</a>
+            
+            <h3 class="fadein">대구점</h3>
+            <p class="fadein">
+                대구광역시 동구 동대구로 550 (신암동 29)<br>
+                영업일：연중 무휴<br>
+                영업시간：11:00〜21:00
+            </p>
+        </div>
+    </section>
+    </body>
+    </html>
