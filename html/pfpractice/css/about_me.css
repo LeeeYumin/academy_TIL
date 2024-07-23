@@ -1,0 +1,29 @@
+h3 {
+    font-size: 3rem;
+    margin-top: 0;
+}
+
+content {
+    display: flex;
+}
+
+content::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+img {
+    width: 45vw;
+    float: left;
+}
+
+.desc {
+    width: 45vw;
+    float: left;
+    padding: 0 2rem;
+}
+
+.social {
+    font-size: 2.5rem;
+}

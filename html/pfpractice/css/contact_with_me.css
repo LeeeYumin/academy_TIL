@@ -1,0 +1,50 @@
+h3 {
+    font-size: 3rem;
+    margin-top: 0;
+}
+
+h4 {
+    margin-bottom: 0;
+}
+
+p {
+    margin-top: 0;
+}
+.contact-container {
+    display: flex;
+    gap: 3rem;
+}
+
+article {
+    width: 20vw;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+article div {
+    padding: 0.5rem;
+}
+article i {
+    font-size: 2rem;
+}
+
+.request {
+    width: 60vw;
+    padding-top: 1.5rem;
+}
+
+form {
+    height: 100%;
+    padding: 1.5rem;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+form textarea {
+    height: 300px;
+}

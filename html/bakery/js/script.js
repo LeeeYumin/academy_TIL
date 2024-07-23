@@ -33,7 +33,7 @@ window.addEventListener('load', (event) => {
             offset: 0.8
         },
         {
-            opacity: 0,
+            opacity: 0, //opacity 1에서 0으로
             offset: 1
         }
     ],
@@ -65,7 +65,7 @@ const animateFade = (entries, obs) => {
     })
 }
 
-const fadeObserver = new IntersectionObserver(animateFade);
+const fadeObserver = new IntersectionObserver(animateFade); //상태 감지
 
 const fadeinNodes = document.querySelectorAll('.fadein');
 fadeinNodes.forEach((node) => {
