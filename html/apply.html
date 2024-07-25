@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0725</title>
+</head>
+<body>
+    <script>
+        var kim = {
+            name: "kim", 
+            first: 10,
+            second: 20,
+            sum(num) {
+                return num + this.first + this.second;    
+            }
+        }
+        var lee = { 
+            name: "lee",
+            // first: 100,
+            // second: 200
+        }
+
+        // 사용하려는 함수.call(this, 함수 호출에 필요한 파라미터)
+        // 사용하려는 함수.apply(this, 함수 호출에 필요한 파라미터를 배열로)
+        // 사용하려는 함수.bind(this)
+
+        alert(kim.sum.call(lee, 500));
+    </script>
+</body>
+</html>
