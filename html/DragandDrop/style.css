@@ -1,0 +1,46 @@
+/* Trees Image - Pexels: https://www.pexels.com/photo/photo-of-trees-in-forest-3801030/ */
+@import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
+
+:root {
+    --column-1: #a2622d;
+    --column-2: #1b6161;
+    --column-3: #248224;
+    --column-4: #a22d22;
+}
+
+li {
+    list-style: none;
+    margin: 1rem;
+    padding: 1rem;
+    height: fit-content;
+    background-color: rgba(0,0,0, 0.8);
+    border-radius: 5px;
+    line-height: 1.5rem;
+    letter-spacing: 1px;
+    font-weight: bold;
+    cursor:pointer;
+}
+
+body {
+    margin: 0;
+    background: url("./boardgame.jpg");
+    background-size: cover;
+    background-position: 50% 60%;
+    background-attachment: fixed;
+    color: white;
+    font-family: Quicksand, sans-serif;
+    overflow-y: hidden;
+}
+
+.title {
+    text-align: center;
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.board--container {
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+}
+
