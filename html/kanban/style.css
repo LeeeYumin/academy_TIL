@@ -1,0 +1,81 @@
+/* Trees Image - Pexels: https://www.pexels.com/photo/photo-of-trees-in-forest-3801030/ */
+@import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
+
+:root {
+    --column-1: #a2622d;
+    --column-2: #1b6161;
+    --column-3: #248224;
+    --column-4: #a22d22;
+}
+
+li {
+    list-style: none;
+    margin: 1rem;
+    padding: 1rem;
+    height: fit-content;
+    background-color: rgba(0,0,0, 0.8);
+    border-radius: 5px;
+    line-height: 1.5rem;
+    letter-spacing: 1px;
+    font-weight: bold;
+    cursor:pointer;
+}
+
+body {
+    margin: 0;
+    background: url("./boardgame.jpg");
+    background-size: cover;
+    background-position: 50% 60%;
+    background-attachment: fixed;
+    color: white;
+    font-family: Quicksand, sans-serif;
+    overflow-y: hidden;
+}
+
+button {
+    color:white;
+    font-weight: bold;
+}
+
+.board {
+    background-color: rgba(0,0,0,0.5);
+    text-align: center;
+    padding: 1rem;
+    border-radius: 5px;
+    flex:1;
+}
+.board__btn--container {
+    display: flex;
+    justify-content: space-between;
+}
+.board button {
+    display: inline-block;
+    width: 100%;
+    /* padding: 1.5rem; */
+}
+
+.title {
+    text-align: center;
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.board--container {
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.over {
+    background-color: rgba(200,200,200,0.5);
+}
+
+.board--add {
+    min-height: 100px;
+}
+
+.add__item {
+    height: auto;
+    border: 1px solid white;
+}
