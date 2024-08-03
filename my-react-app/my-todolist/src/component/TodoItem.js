@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "./TodoItem.css";
 
 const TodoItem = ({ id, content, isDone, createdDate, onUpdate, onDelete }) => {
@@ -8,6 +9,22 @@ const TodoItem = ({ id, content, isDone, createdDate, onUpdate, onDelete }) => {
     onDelete(id);
   };
 
+  // const didMountRef = useRef(false);
+  // useEffect(() => {
+  //   if(!didMountRef.current) {
+  //     didMountRef.current = true;
+  //     return;
+  //   }
+  //   console.log("컴포넌트 업데이트");
+  // })
+
+  //   useEffect(() => {
+  //     console.log("컴포넌트 마운트");
+  //     return () => {
+  //       console.log("컴포넌트 언마운트");
+  //     }     
+  //   }, [])
+  
   return (
     <div className="TodoItem">
       <div className="checkbox_col">
